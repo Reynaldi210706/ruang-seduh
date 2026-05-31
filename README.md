@@ -104,3 +104,9 @@ Agar proses edit lebih nyaman, folder website bisa dibuka di Visual Studio Code 
 ## Status Website
 
 Ruang Seduh adalah website cafe frontend yang dapat digunakan untuk menampilkan profil cafe, menu digital, promo, galeri, review, reservasi, kontak, dan pengelolaan tampilan secara langsung dari browser.
+
+## Live Demo
+
+Website dapat dilihat di:
+
+https://ruang-seduh.netlify.app/
