@@ -1,0 +1,1058 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ruang Seduh</title>
+    <meta
+      name="description"
+      content="Website cafe modern untuk menampilkan suasana, menu, promo, reservasi, galeri, ulasan, dan kontak secara rapi."
+    />
+    <meta
+      name="keywords"
+      content="Ruang Seduh, Cafe, Coffee, Menu Digital, Website Cafe"
+    />
+    <meta name="author" content="Reynaldi Indrawijaya" />
+    <meta property="og:title" content="Ruang Seduh" />
+    <meta
+      property="og:description"
+      content="Website cafe modern dengan tampilan interaktif dan pengaturan konten langsung dari browser."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#7b4b2a" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar">
+        <a class="brand" href="#home" aria-label="Ruang Seduh">
+          <span id="brandMark" class="brand-mark">RS</span>
+          <span>
+            <strong id="brandName">Ruang Seduh</strong>
+            <small id="brandTagline"
+              >Kopi hangat untuk waktu yang tenang.</small
+            >
+          </span>
+        </a>
+
+        <button
+          id="navToggle"
+          class="nav-toggle"
+          type="button"
+          aria-label="Buka menu"
+        >
+          <span></span><span></span><span></span>
+        </button>
+
+        <div id="navLinks" class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#pesanan">Pesanan</a>
+          <a href="#reservasi">Reservasi</a>
+          <a href="#promo">Promo</a>
+          <a href="#galeri">Galeri</a>
+          <a href="#review">Review</a>
+          <a href="#kontak">Kontak</a>
+          <a href="#kelola">Kelola</a>
+        </div>
+
+        <div class="nav-actions">
+          <button
+            id="quickCartBtn"
+            class="mini-action"
+            type="button"
+            aria-label="Lihat pesanan"
+          >
+            🧾 <span id="cartCount">0</span>
+          </button>
+          <button
+            id="themeToggle"
+            class="mini-action"
+            type="button"
+            aria-label="Ganti mode warna"
+          >
+            🌙
+          </button>
+          <span id="modeStatus" class="mode-status">Soft</span>
+        </div>
+      </nav>
+      <div id="scrollProgress" class="scroll-progress"></div>
+    </header>
+
+    <div id="loadingScreen" class="loading-screen">
+      <div class="loader-cup">
+        <span></span>
+      </div>
+      <p>Sebentar, ruang nyaman sedang disiapkan...</p>
+    </div>
+
+    <div id="toastWrap" class="toast-wrap" aria-live="polite"></div>
+
+    <div id="modalOverlay" class="modal-overlay" aria-hidden="true">
+      <div class="modal-card" role="dialog" aria-modal="true">
+        <button
+          id="modalClose"
+          class="icon-btn modal-close"
+          type="button"
+          aria-label="Tutup modal"
+        >
+          ×
+        </button>
+        <div id="modalContent"></div>
+      </div>
+    </div>
+
+    <button
+      id="backToTop"
+      class="back-to-top"
+      type="button"
+      aria-label="Kembali ke atas"
+    >
+      ↑
+    </button>
+    <main>
+      <section id="home" class="section hero-section reveal">
+        <div class="hero-bg-orb orb-one"></div>
+        <div class="hero-bg-orb orb-two"></div>
+        <div class="hero-content">
+          <p class="eyebrow">Kopi, suasana, dan cerita</p>
+          <h1 id="heroTitle">Ruang Seduh</h1>
+          <p id="heroSubtitle">
+            Tempat singgah untuk menikmati kopi, ngobrol santai, dan melepas
+            penat sebentar.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#menu">Lihat Menu</a>
+            <a class="btn ghost" href="#reservasi">Reservasi</a>
+          </div>
+          <div class="hero-stats">
+            <div>
+              <strong id="statMenu">0</strong>
+              <span>Menu</span>
+            </div>
+            <div>
+              <strong id="statPromo">0</strong>
+              <span>Promo</span>
+            </div>
+            <div>
+              <strong id="statReview">0</strong>
+              <span>Review</span>
+            </div>
+          </div>
+          <div class="hero-badges">
+            <span>Suasana hangat</span>
+            <span>Mudah diatur</span>
+            <span>Nyaman dibuka di HP</span>
+            <span>Isi tersimpan rapi</span>
+          </div>
+        </div>
+        <div class="hero-panel glass-card">
+          <div class="panel-head">
+            <span class="dot"></span>
+            <span>Info Cafe</span>
+          </div>
+          <div class="info-list">
+            <p>
+              <strong>Jam:</strong> <span id="homeHours">Belum diisi.</span>
+            </p>
+            <p>
+              <strong>Lokasi:</strong>
+              <span id="homeAddress">Belum diisi.</span>
+            </p>
+            <p>
+              <strong>Kontak:</strong> <span id="homePhone">Belum diisi.</span>
+            </p>
+          </div>
+          <div class="hero-card-note">
+            <span>☕</span>
+            <p id="homeAbout">
+              Cerita cafe belum diisi. Buka menu Kelola untuk menyesuaikan isi
+              website.
+            </p>
+          </div>
+          <div class="live-mood-card">
+            <div>
+              <strong id="liveMoodText">Suasana hari ini hangat.</strong>
+              <small id="liveClock">--:--</small>
+            </div>
+            <span class="pulse-dot"></span>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="section reveal">
+        <div class="section-title">
+          <p class="eyebrow">Tentang</p>
+          <h2>Cerita Ruang Seduh</h2>
+          <p id="aboutText">
+            Cerita cafe belum diisi. Kamu bisa menyesuaikannya dari halaman
+            Kelola.
+          </p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <span>☕</span>
+            <h3>Menu Digital</h3>
+            <p>
+              Menu bisa disusun rapi lengkap dengan kategori, harga, deskripsi,
+              dan penanda khusus.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>🎨</span>
+            <h3>Tampilan Fleksibel</h3>
+            <p>
+              Warna, tulisan, bentuk card, bayangan, dan kontak bisa diatur
+              dengan mudah dari halaman Kelola.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>📱</span>
+            <h3>Nyaman di HP</h3>
+            <p>
+              Tampilan tetap nyaman saat dibuka dari laptop, tablet, atau HP.
+            </p>
+          </article>
+          <article class="feature-card">
+            <span>💾</span>
+            <h3>Simpan di Browser</h3>
+            <p>
+              Isi tersimpan di browser yang sedang dipakai, jadi website tetap
+              ringan dan mudah dicoba.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="menu" class="section reveal">
+        <div class="section-title with-action">
+          <div>
+            <p class="eyebrow">Menu Digital</p>
+            <h2>Menu Cafe</h2>
+            <p>
+              Atur menu dari halaman Kelola. Kalau belum ada menu, bagian ini
+              tetap terlihat bersih dan rapi.
+            </p>
+          </div>
+          <button
+            class="btn secondary"
+            type="button"
+            data-open-tab="menuManage"
+          >
+            Tambah Menu
+          </button>
+        </div>
+
+        <div class="toolbar glass-card">
+          <label class="search-box">
+            <span>🔎</span>
+            <input id="menuSearch" type="search" placeholder="Cari menu..." />
+          </label>
+          <select id="categoryFilter" aria-label="Filter kategori"></select>
+          <select id="badgeFilter" aria-label="Filter badge">
+            <option value="">Semua badge</option>
+            <option value="best">Best Seller</option>
+            <option value="new">Menu Baru</option>
+            <option value="promo">Promo</option>
+            <option value="favorite">Favorit</option>
+          </select>
+          <select id="sortMenu" aria-label="Urutkan menu">
+            <option value="default">Urutan default</option>
+            <option value="low">Harga termurah</option>
+            <option value="high">Harga termahal</option>
+            <option value="name">Nama A-Z</option>
+          </select>
+          <button id="resetMenuFilter" class="btn soft" type="button">
+            Bersihkan
+          </button>
+        </div>
+
+        <div id="menuGrid" class="menu-grid"></div>
+        <div id="menuEmpty" class="empty-state hidden">
+          <span>☕</span>
+          <h3>Menu belum ditambahkan.</h3>
+          <p>
+            Tambahkan menu dari halaman Kelola agar daftar menu mulai tampil.
+          </p>
+          <button class="btn primary" type="button" data-open-tab="menuManage">
+            Tambah Menu
+          </button>
+        </div>
+      </section>
+
+      <section id="pesanan" class="section reveal">
+        <div class="section-title">
+          <p class="eyebrow">Pesanan</p>
+          <h2>Keranjang Pesanan</h2>
+          <p>
+            Pilih menu, rapikan pesanan, lalu kirim ringkasannya ke WhatsApp
+            cafe.
+          </p>
+        </div>
+
+        <div class="order-layout">
+          <div class="glass-card cart-list-card">
+            <div class="card-head">
+              <h3>Item Pesanan</h3>
+              <button id="clearCartBtn" class="btn danger small" type="button">
+                Kosongkan
+              </button>
+            </div>
+            <div id="cartList" class="cart-list"></div>
+            <div id="cartEmpty" class="empty-state compact hidden">
+              <span>🧾</span>
+              <h3>Keranjang masih kosong.</h3>
+              <p>Pilih menu terlebih dahulu untuk mulai menyusun pesanan.</p>
+            </div>
+          </div>
+
+          <aside class="glass-card order-summary">
+            <h3>Ringkasan</h3>
+            <label
+              >Mode Pesanan
+              <select id="orderMode">
+                <option value="Dine In">Dine In</option>
+                <option value="Take Away">Take Away</option>
+              </select>
+            </label>
+            <label
+              >Nomor Meja
+              <input
+                id="tableNumber"
+                type="text"
+                placeholder="Isi jika dine in"
+              />
+            </label>
+            <label
+              >Kode Promo
+              <input
+                id="promoCodeInput"
+                type="text"
+                placeholder="Masukkan kode promo"
+              />
+            </label>
+            <label
+              >Catatan
+              <textarea
+                id="orderNotes"
+                rows="3"
+                placeholder="Catatan tambahan"
+              ></textarea>
+            </label>
+
+            <div class="summary-lines">
+              <p><span>Subtotal</span><strong id="subtotalText">Rp0</strong></p>
+              <p><span>Biaya Layanan</span><strong id="feeText">Rp0</strong></p>
+              <p><span>Diskon</span><strong id="discountText">Rp0</strong></p>
+              <p class="total-line">
+                <span>Total</span><strong id="totalText">Rp0</strong>
+              </p>
+            </div>
+
+            <div class="summary-actions">
+              <button id="applyPromoBtn" class="btn soft" type="button">
+                Gunakan Kode
+              </button>
+              <button id="receiptBtn" class="btn secondary" type="button">
+                Lihat Struk
+              </button>
+              <button id="whatsappOrderBtn" class="btn primary" type="button">
+                Kirim WhatsApp
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="reservasi" class="section reveal">
+        <div class="section-title">
+          <p class="eyebrow">Reservasi</p>
+          <h2>Reservasi Meja</h2>
+          <p>Isi data reservasi, lalu kirim ringkasannya ke WhatsApp cafe.</p>
+        </div>
+
+        <div class="split-layout">
+          <form id="reservationForm" class="form-card glass-card">
+            <label
+              >Nama
+              <input id="resName" type="text" placeholder="Nama pemesan" />
+            </label>
+            <label
+              >Nomor WhatsApp
+              <input id="resPhone" type="tel" placeholder="08..." />
+            </label>
+            <label
+              >Tanggal
+              <input id="resDate" type="date" />
+            </label>
+            <label
+              >Jam
+              <input id="resTime" type="time" />
+            </label>
+            <label
+              >Jumlah Orang
+              <input
+                id="resPeople"
+                type="number"
+                min="1"
+                placeholder="Contoh: 2"
+              />
+            </label>
+            <label
+              >Catatan
+              <textarea
+                id="resNotes"
+                rows="3"
+                placeholder="Catatan reservasi"
+              ></textarea>
+            </label>
+            <button class="btn primary" type="submit">
+              Konfirmasi Reservasi
+            </button>
+          </form>
+
+          <div class="glass-card">
+            <div class="card-head">
+              <h3>Riwayat Reservasi</h3>
+              <button
+                id="clearReservationBtn"
+                class="btn danger small"
+                type="button"
+              >
+                Hapus
+              </button>
+            </div>
+            <div id="reservationList" class="stack-list"></div>
+            <div id="reservationEmpty" class="empty-state compact hidden">
+              <span>📅</span>
+              <h3>Belum ada reservasi.</h3>
+              <p>Reservasi yang sudah dibuat akan muncul di sini.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="promo" class="section reveal">
+        <div class="section-title with-action">
+          <div>
+            <p class="eyebrow">Promo & Event</p>
+            <h2>Info Terbaru</h2>
+            <p>Promo dan event bisa ditambahkan dari halaman Kelola.</p>
+          </div>
+          <button
+            class="btn secondary"
+            type="button"
+            data-open-tab="promoManage"
+          >
+            Tambah Promo
+          </button>
+        </div>
+
+        <div id="promoGrid" class="promo-grid"></div>
+        <div id="promoEmpty" class="empty-state hidden">
+          <span>🏷️</span>
+          <h3>Promo belum tersedia.</h3>
+          <p>Tambahkan promo atau event dari halaman Kelola.</p>
+        </div>
+      </section>
+
+      <section id="galeri" class="section reveal">
+        <div class="section-title with-action">
+          <div>
+            <p class="eyebrow">Galeri</p>
+            <h2>Foto Cafe</h2>
+            <p>
+              Galeri akan tetap kosong sampai foto ditambahkan dari halaman
+              Kelola.
+            </p>
+          </div>
+          <button
+            class="btn secondary"
+            type="button"
+            data-open-tab="galleryManage"
+          >
+            Tambah Foto
+          </button>
+        </div>
+
+        <div class="toolbar glass-card">
+          <select id="galleryFilter" aria-label="Filter galeri"></select>
+          <button id="resetGalleryFilter" class="btn soft" type="button">
+            Bersihkan
+          </button>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid"></div>
+        <div id="galleryEmpty" class="empty-state hidden">
+          <span>🖼️</span>
+          <h3>Galeri masih kosong.</h3>
+          <p>
+            Tambahkan foto dari halaman Kelola agar suasana cafe mulai tampil.
+          </p>
+        </div>
+      </section>
+
+      <section id="review" class="section reveal">
+        <div class="section-title">
+          <p class="eyebrow">Review</p>
+          <h2>Ulasan Pengunjung</h2>
+          <p>Ulasan pengunjung akan tampil di halaman ini.</p>
+        </div>
+
+        <div class="review-layout">
+          <div class="glass-card review-showcase">
+            <div class="card-head">
+              <h3>Testimoni</h3>
+              <div class="slider-actions">
+                <button
+                  id="prevReview"
+                  class="icon-btn"
+                  type="button"
+                  aria-label="Review sebelumnya"
+                >
+                  ‹
+                </button>
+                <button
+                  id="nextReview"
+                  class="icon-btn"
+                  type="button"
+                  aria-label="Review berikutnya"
+                >
+                  ›
+                </button>
+              </div>
+            </div>
+            <div id="reviewSlider" class="review-slider"></div>
+            <div id="reviewEmpty" class="empty-state compact hidden">
+              <span>⭐</span>
+              <h3>Belum ada ulasan.</h3>
+              <p>Ulasan yang masuk akan muncul di sini.</p>
+            </div>
+            <p class="rating-average">
+              Rata-rata rating: <strong id="ratingAverage">0.0</strong>
+            </p>
+          </div>
+
+          <form id="reviewForm" class="form-card glass-card">
+            <h3>Tulis Review</h3>
+            <label
+              >Nama
+              <input
+                id="reviewName"
+                type="text"
+                placeholder="Nama pengunjung"
+              />
+            </label>
+            <label
+              >Rating
+              <select id="reviewRating">
+                <option value="">Pilih rating</option>
+                <option value="5">5 - Sangat puas</option>
+                <option value="4">4 - Puas</option>
+                <option value="3">3 - Cukup</option>
+                <option value="2">2 - Kurang</option>
+                <option value="1">1 - Tidak puas</option>
+              </select>
+            </label>
+            <label
+              >Ulasan
+              <textarea
+                id="reviewText"
+                rows="4"
+                placeholder="Tulis ulasan"
+              ></textarea>
+            </label>
+            <button class="btn primary" type="submit">Kirim Review</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="kontak" class="section reveal">
+        <div class="section-title">
+          <p class="eyebrow">Kontak</p>
+          <h2>Hubungi Cafe</h2>
+          <p>Informasi kontak mengikuti data yang diisi dari halaman Kelola.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="glass-card contact-card">
+            <span>📍</span>
+            <h3>Alamat</h3>
+            <p id="contactAddress">Informasi kontak belum tersedia.</p>
+            <a
+              id="mapsLink"
+              class="btn soft"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              >Buka Maps</a
+            >
+          </div>
+          <div class="glass-card contact-card">
+            <span>💬</span>
+            <h3>WhatsApp</h3>
+            <p id="contactPhone">Belum diisi.</p>
+            <a
+              id="waContactLink"
+              class="btn soft"
+              href="#"
+              target="_blank"
+              rel="noreferrer"
+              >Chat WhatsApp</a
+            >
+          </div>
+          <div class="glass-card contact-card">
+            <span>📮</span>
+            <h3>Media</h3>
+            <p id="contactEmail">Email belum diisi.</p>
+            <p id="contactInstagram">Instagram belum diisi.</p>
+          </div>
+        </div>
+
+        <div class="glass-card faq-card">
+          <div class="card-head">
+            <h3>FAQ</h3>
+            <button
+              class="btn secondary small"
+              type="button"
+              data-open-tab="faqManage"
+            >
+              Tambah FAQ
+            </button>
+          </div>
+          <div id="faqList" class="faq-list"></div>
+          <div id="faqEmpty" class="empty-state compact hidden">
+            <span>❔</span>
+            <h3>FAQ belum ditambahkan.</h3>
+            <p>Tambahkan pertanyaan dan jawaban dari halaman Kelola.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="kelola" class="section reveal manage-section">
+        <div class="section-title">
+          <p class="eyebrow">Kelola</p>
+          <h2>Kelola Website</h2>
+          <p>
+            Atur tampilan, menu, promo, galeri, ulasan, dan kontak dari satu
+            tempat.
+          </p>
+        </div>
+
+        <div class="manage-shell glass-card">
+          <div class="manage-tabs">
+            <button
+              class="tab-btn active"
+              type="button"
+              data-tab="appearanceManage"
+            >
+              Tampilan
+            </button>
+            <button class="tab-btn" type="button" data-tab="menuManage">
+              Menu
+            </button>
+            <button class="tab-btn" type="button" data-tab="promoManage">
+              Promo
+            </button>
+            <button class="tab-btn" type="button" data-tab="galleryManage">
+              Galeri
+            </button>
+            <button class="tab-btn" type="button" data-tab="reviewManage">
+              Review
+            </button>
+            <button class="tab-btn" type="button" data-tab="faqManage">
+              FAQ
+            </button>
+            <button class="tab-btn" type="button" data-tab="dataManage">
+              Data
+            </button>
+          </div>
+
+          <div class="tab-panel active" id="appearanceManage">
+            <div class="manage-highlight">
+              <div>
+                <h3>Atur suasana cafe dari satu tempat</h3>
+                <p>
+                  Ubah warna, tulisan, kontak, menu, promo, galeri, dan bagian
+                  lain dengan lebih praktis.
+                </p>
+              </div>
+              <span>Ruang Kelola</span>
+            </div>
+            <form id="settingsForm" class="form-grid">
+              <label
+                >Nama Cafe
+                <input id="setName" type="text" />
+              </label>
+              <label
+                >Tagline
+                <input id="setTagline" type="text" />
+              </label>
+              <label class="span-2"
+                >Deskripsi Cafe
+                <textarea id="setAbout" rows="4"></textarea>
+              </label>
+              <label
+                >Jam Operasional
+                <input id="setHours" type="text" />
+              </label>
+              <label
+                >Nomor WhatsApp
+                <input id="setWhatsapp" type="text" />
+              </label>
+              <label
+                >Email
+                <input id="setEmail" type="email" />
+              </label>
+              <label
+                >Instagram
+                <input id="setInstagram" type="text" />
+              </label>
+              <label class="span-2"
+                >Alamat
+                <textarea id="setAddress" rows="3"></textarea>
+              </label>
+              <label class="span-2"
+                >Link Google Maps
+                <input id="setMaps" type="url" />
+              </label>
+              <label
+                >Warna Utama
+                <input id="setPrimary" type="color" />
+              </label>
+              <label
+                >Warna Dasar
+                <input id="setCream" type="color" />
+              </label>
+              <label
+                >Warna Coklat
+                <input id="setBrown" type="color" />
+              </label>
+              <label
+                >Warna Teks
+                <input id="setTextColor" type="color" />
+              </label>
+              <label
+                >Font
+                <select id="setFont">
+                  <option value="system">Default</option>
+                  <option value="serif">Elegan</option>
+                  <option value="rounded">Membulat</option>
+                </select>
+              </label>
+              <label
+                >Bentuk Card
+                <select id="setRadius">
+                  <option value="soft">Lembut</option>
+                  <option value="modern">Modern</option>
+                  <option value="round">Bulat</option>
+                </select>
+              </label>
+              <label
+                >Bayangan Card
+                <select id="setShadow">
+                  <option value="soft">Lembut</option>
+                  <option value="bold">Tebal</option>
+                  <option value="clean">Bersih</option>
+                </select>
+              </label>
+              <label
+                >Mode Layout
+                <select id="setDensity">
+                  <option value="comfortable">Nyaman</option>
+                  <option value="compact">Ringkas</option>
+                  <option value="spacious">Lega</option>
+                </select>
+              </label>
+              <label
+                >Biaya Layanan (%)
+                <input id="setFee" type="number" min="0" max="100" />
+              </label>
+              <label
+                >Kode Promo Utama
+                <input id="setPromoCode" type="text" />
+              </label>
+              <label
+                >Diskon Kode Promo (%)
+                <input id="setPromoDiscount" type="number" min="0" max="100" />
+              </label>
+              <div class="form-actions span-2">
+                <button class="btn primary" type="submit">
+                  Simpan Tampilan
+                </button>
+                <button
+                  id="previewThemeBtn"
+                  class="btn secondary"
+                  type="button"
+                >
+                  Coba Tema
+                </button>
+              </div>
+            </form>
+            <div class="theme-preview-grid">
+              <button
+                class="theme-preset preset-coffee"
+                type="button"
+                data-theme-preset="coffee"
+              >
+                Kopi Hangat
+              </button>
+              <button
+                class="theme-preset preset-dark"
+                type="button"
+                data-theme-preset="darkcoffee"
+              >
+                Kopi Gelap
+              </button>
+              <button
+                class="theme-preset preset-mocha"
+                type="button"
+                data-theme-preset="mocha"
+              >
+                Mocha Cerah
+              </button>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="menuManage">
+            <form id="menuForm" class="form-grid">
+              <input id="menuEditId" type="hidden" />
+              <label
+                >Nama Menu
+                <input id="menuNameInput" type="text" placeholder="Nama menu" />
+              </label>
+              <label
+                >Kategori
+                <input
+                  id="menuCategoryInput"
+                  type="text"
+                  placeholder="Kategori"
+                />
+              </label>
+              <label
+                >Harga
+                <input
+                  id="menuPriceInput"
+                  type="number"
+                  min="0"
+                  placeholder="0"
+                />
+              </label>
+              <label
+                >Link Foto Opsional
+                <input
+                  id="menuImageInput"
+                  type="url"
+                  placeholder="https://..."
+                />
+              </label>
+              <label class="span-2"
+                >Deskripsi
+                <textarea id="menuDescInput" rows="3"></textarea>
+              </label>
+              <div class="checkbox-row span-2">
+                <label
+                  ><input id="menuBestInput" type="checkbox" /> Best
+                  Seller</label
+                >
+                <label
+                  ><input id="menuNewInput" type="checkbox" /> Menu Baru</label
+                >
+                <label
+                  ><input id="menuPromoInput" type="checkbox" /> Promo</label
+                >
+                <label
+                  ><input id="menuFavInput" type="checkbox" /> Favorit</label
+                >
+              </div>
+              <div class="form-actions span-2">
+                <button class="btn primary" type="submit">Simpan Menu</button>
+                <button id="cancelMenuEdit" class="btn soft" type="button">
+                  Batal Edit
+                </button>
+              </div>
+            </form>
+            <div id="manageMenuList" class="manage-list"></div>
+          </div>
+
+          <div class="tab-panel" id="promoManage">
+            <form id="promoForm" class="form-grid">
+              <input id="promoEditId" type="hidden" />
+              <label
+                >Judul Promo / Event
+                <input id="promoTitleInput" type="text" />
+              </label>
+              <label
+                >Kode Promo
+                <input id="promoCodeManageInput" type="text" />
+              </label>
+              <label
+                >Diskon (%)
+                <input
+                  id="promoDiscountInput"
+                  type="number"
+                  min="0"
+                  max="100"
+                />
+              </label>
+              <label
+                >Tanggal Berakhir
+                <input id="promoEndInput" type="date" />
+              </label>
+              <label
+                >Status
+                <select id="promoStatusInput">
+                  <option value="active">Aktif</option>
+                  <option value="inactive">Nonaktif</option>
+                </select>
+              </label>
+              <label class="span-2"
+                >Deskripsi
+                <textarea id="promoDescInput" rows="3"></textarea>
+              </label>
+              <div class="form-actions span-2">
+                <button class="btn primary" type="submit">Simpan Promo</button>
+                <button id="cancelPromoEdit" class="btn soft" type="button">
+                  Batal Edit
+                </button>
+              </div>
+            </form>
+            <div id="managePromoList" class="manage-list"></div>
+          </div>
+
+          <div class="tab-panel" id="galleryManage">
+            <form id="galleryForm" class="form-grid">
+              <input id="galleryEditId" type="hidden" />
+              <label
+                >Judul Foto
+                <input id="galleryTitleInput" type="text" />
+              </label>
+              <label
+                >Kategori
+                <input id="galleryCategoryInput" type="text" />
+              </label>
+              <label class="span-2"
+                >Link Foto
+                <input
+                  id="galleryImageInput"
+                  type="url"
+                  placeholder="https://..."
+                />
+              </label>
+              <label class="span-2"
+                >Deskripsi
+                <textarea id="galleryDescInput" rows="3"></textarea>
+              </label>
+              <div class="form-actions span-2">
+                <button class="btn primary" type="submit">Simpan Foto</button>
+                <button id="cancelGalleryEdit" class="btn soft" type="button">
+                  Batal Edit
+                </button>
+              </div>
+            </form>
+            <div id="manageGalleryList" class="manage-list"></div>
+          </div>
+
+          <div class="tab-panel" id="reviewManage">
+            <div class="manage-note">
+              <h3>Kelola Review</h3>
+              <p>
+                Ulasan yang masuk akan tampil di sini. Kamu bisa melihat detail
+                atau menghapus ulasan yang tidak diperlukan.
+              </p>
+            </div>
+            <div id="manageReviewList" class="manage-list"></div>
+            <div id="manageReviewEmpty" class="empty-state compact hidden">
+              <span>⭐</span>
+              <h3>Belum ada review.</h3>
+              <p>
+                Ulasan baru akan muncul setelah pengunjung mengisi form review.
+              </p>
+            </div>
+          </div>
+
+          <div class="tab-panel" id="faqManage">
+            <form id="faqForm" class="form-grid">
+              <input id="faqEditId" type="hidden" />
+              <label class="span-2"
+                >Pertanyaan
+                <input id="faqQuestionInput" type="text" />
+              </label>
+              <label class="span-2"
+                >Jawaban
+                <textarea id="faqAnswerInput" rows="3"></textarea>
+              </label>
+              <div class="form-actions span-2">
+                <button class="btn primary" type="submit">Simpan FAQ</button>
+                <button id="cancelFaqEdit" class="btn soft" type="button">
+                  Batal Edit
+                </button>
+              </div>
+            </form>
+            <div id="manageFaqList" class="manage-list"></div>
+          </div>
+
+          <div class="tab-panel" id="dataManage">
+            <div class="data-actions">
+              <button id="exportDataBtn" class="btn primary" type="button">
+                Export Data
+              </button>
+              <label class="btn secondary file-btn"
+                >Import Data
+                <input
+                  id="importDataInput"
+                  type="file"
+                  accept="application/json"
+                />
+              </label>
+              <button id="resetCartOnlyBtn" class="btn soft" type="button">
+                Kosongkan Keranjang
+              </button>
+              <button id="resetMenuOnlyBtn" class="btn soft" type="button">
+                Hapus Menu
+              </button>
+              <button id="resetPromoOnlyBtn" class="btn soft" type="button">
+                Hapus Promo
+              </button>
+              <button id="resetGalleryOnlyBtn" class="btn soft" type="button">
+                Hapus Galeri
+              </button>
+              <button id="resetReviewOnlyBtn" class="btn soft" type="button">
+                Hapus Review
+              </button>
+              <button id="resetAllDataBtn" class="btn danger" type="button">
+                Hapus Semua Data
+              </button>
+            </div>
+            <div class="note-card">
+              <h3>Catatan</h3>
+              <p>
+                Isi website tersimpan di browser yang sedang dipakai. Kalau
+                dibuka dari browser lain, isinya bisa berbeda.
+              </p>
+              <ul class="simple-list">
+                <li>Export Data untuk menyimpan cadangan isi website.</li>
+                <li>
+                  Import Data untuk memakai kembali cadangan yang sudah
+                  disimpan.
+                </li>
+                <li>
+                  Hapus data hanya berlaku di browser yang sedang dipakai.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p id="footerText">
+        © 2026 Ruang Seduh. Kopi hangat, obrolan ringan, dan waktu yang lebih
+        tenang.
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
